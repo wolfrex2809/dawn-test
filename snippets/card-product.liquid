@@ -609,6 +609,11 @@
               {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
             {% endif %}
           </div>
+          {% if card_product.metafields.custom.chip_texto.value != blank %}
+            <span class="custom-product-chip-overlay">
+              {{ card_product.metafields.custom.chip_texto.value }}
+            </span>
+          {% endif %}
         </div>
       </div>
       <div class="card__content">
