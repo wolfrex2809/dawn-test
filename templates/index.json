@@ -23,7 +23,7 @@
           "type": "text",
           "settings": {
             "text": "Cada vial lleva un chip. Un <em>tap</em> con tu teléfono y tienes el COA de tu lote: HPLC, pureza, fecha y laboratorio.",
-            "text_style": "body"
+            "text_style": "subtitle"
           }
         },
         "button": {
