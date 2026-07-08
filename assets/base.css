@@ -3617,3 +3617,7 @@ details-disclosure > details {
   font-weight: normal;
   font-style: normal;
 }
+
+body, p, a, span, h1, h2, h3, h4, h5, h6 {
+  font-family: "Satoshi-Regular", sans-serif !important;
+}
