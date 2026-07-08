@@ -123,6 +123,11 @@
                   aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}{% endif %}"
                 >
                   {{ card_product.title | escape }}
+                  {% if card_product.metafields.custom.chip_texto.value != blank %}
+                    
+                      {{ card_product.metafields.custom.chip_texto.value }}
+                    
+                  {% endif %}
                 </a>
               </h3>
             </div>
