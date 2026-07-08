@@ -3621,3 +3621,15 @@ details-disclosure > details {
 body, p, a, span, h1, h2, h3, h4, h5, h6 {
   font-family: "Satoshi-Regular", sans-serif !important;
 }
+
+.custom-product-chip {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 4px 0;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 12px;
+  background-color: #E09038; /* Color de fondo */
+  color: #F8F8F8; /* Color del texto */
+}
