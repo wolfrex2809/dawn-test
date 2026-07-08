@@ -15,16 +15,23 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
+            "heading": "Pureza verificada en cada",
             "heading_size": "h0"
+          }
+        },
+        "text_HdQnCk": {
+          "type": "text",
+          "settings": {
+            "text": "Cada vial lleva un chip. Un <em>tap</em> con tu teléfono y tienes el COA de tu lote: HPLC, pureza, fecha y laboratorio.",
+            "text_style": "body"
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
+            "button_label_1": "Ver Catalogo",
             "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
+            "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "",
             "button_style_secondary_2": false
@@ -33,6 +40,7 @@
       },
       "block_order": [
         "heading",
+        "text_HdQnCk",
         "button"
       ],
       "settings": {
