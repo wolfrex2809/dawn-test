@@ -1,0 +1,1027 @@
+{%- comment -%}
+<!-- Designed by ONHOW Studio - Anas El Medlaoui -->
+{%- endcomment -%}
+
+{%- for block in section.blocks -%}
+  {%- if block.type == 'hero_text' -%}
+    <style>{{ block.settings.onhow_studio_heading_font | font_face: font_display: 'swap' }}</style>
+  {%- endif -%}
+{%- endfor -%}
+
+<div
+  class="onhow-studio-section-wrapper-{{ section.settings.onhow_studio_core_logic }}"
+  style="
+    --onhow-studio-bg: {{ section.settings.onhow_studio_bg_color }};
+    --onhow-studio-text: {{ section.settings.onhow_studio_text_color }};
+    height: {{ section.settings.onhow_studio_section_height }}vh;
+    background-color: {{ section.settings.onhow_studio_bg_color }};
+  "
+  data-section-id="{{ section.id }}"
+  data-mobile-enabled="{{ section.settings.onhow_studio_enable_mobile }}"
+  aria-label="Parallax banner">
+
+  <div class="onhow-studio-parallax-container">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'parallax_layer' -%}
+        {%- if block.settings.onhow_studio_image != blank -%}
+          <div
+            class="onhow-studio-parallax-layer"
+            data-speed="{{ block.settings.onhow_studio_speed }}"
+            data-block-id="{{ block.id }}"
+            style="z-index: {{ block.settings.onhow_studio_z_index }};"
+            role="img"
+            aria-label="Parallax background layer"
+            {{ block.shopify_attributes }}>
+          </div>
+        {%- else -%}
+          <div
+            class="onhow-studio-parallax-layer onhow-studio-parallax-layer--placeholder"
+            data-speed="{{ block.settings.onhow_studio_speed }}"
+            data-block-id="{{ block.id }}"
+            style="z-index: {{ block.settings.onhow_studio_z_index }};"
+            {{ block.shopify_attributes }}>
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'onhow-studio-placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  {%- if section.settings.onhow_studio_show_bottom_fade -%}
+    <div
+      class="onhow-studio-parallax-bottom-fade"
+      style="background: linear-gradient(to top, rgba(0, 0, 0, {{ section.settings.onhow_studio_bottom_fade_opacity | divided_by: 100.0 }}), transparent);">
+    </div>
+  {%- endif -%}
+
+  <div class="onhow-studio-parallax-overlays">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'hero_text' -%}
+        <div
+          class="onhow-studio-hero-text {%- if block.settings.onhow_studio_fade_in %} onhow-studio-fade-in{%- endif -%}"
+          data-block-id="{{ block.id }}"
+          style="
+            --onhow-studio-hero-align: {{ block.settings.onhow_studio_text_alignment }};
+            --onhow-studio-hero-max-width: {{ block.settings.onhow_studio_max_width }}px;
+            --onhow-studio-hero-heading-family: {{ block.settings.onhow_studio_heading_font.family }}, {{ block.settings.onhow_studio_heading_font.fallback_families }};
+            --onhow-studio-hero-heading-weight: {{ block.settings.onhow_studio_heading_font.weight }};
+            --onhow-studio-hero-heading-style: {{ block.settings.onhow_studio_heading_font.style }};
+            --onhow-studio-hero-heading-size: {{ block.settings.onhow_studio_heading_size }}px;
+            --onhow-studio-hero-heading-color: {{ block.settings.onhow_studio_heading_color }};
+            --onhow-studio-hero-sub-size: {{ block.settings.onhow_studio_subheading_size }}px;
+            --onhow-studio-hero-sub-color: {{ block.settings.onhow_studio_subheading_color }};
+            --onhow-studio-hero-btn-color: {{ block.settings.onhow_studio_button_color }};
+            --onhow-studio-hero-btn-text: {{ block.settings.onhow_studio_button_text_color }};
+          "
+          {{ block.shopify_attributes }}>
+
+          {%- if block.settings.onhow_studio_heading != blank -%}
+            <h2 class="onhow-studio-hero-text__heading">{{ block.settings.onhow_studio_heading }}</h2>
+          {%- endif -%}
+
+          {%- if block.settings.onhow_studio_subheading != blank -%}
+            <p class="onhow-studio-hero-text__subheading">{{ block.settings.onhow_studio_subheading }}</p>
+          {%- endif -%}
+
+          {%- if block.settings.onhow_studio_button_text != blank and block.settings.onhow_studio_button_link != blank -%}
+            <a href="{{ block.settings.onhow_studio_button_link }}" class="onhow-studio-hero-text__button onhow-studio-hero-text__button--{{ block.settings.onhow_studio_button_style }}">
+              {{- block.settings.onhow_studio_button_text -}}
+            </a>
+          {%- endif -%}
+
+          {%- if block.settings.onhow_studio_show_scroll_indicator -%}
+            <div class="onhow-studio-scroll-indicator" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if block.type == 'text_overlay' -%}
+        <div
+          class="onhow-studio-text-overlay onhow-studio-text-overlay--{{ block.settings.onhow_studio_position }} {%- if block.settings.onhow_studio_fade_in %} onhow-studio-fade-in{%- endif -%}"
+          data-block-id="{{ block.id }}"
+          {{ block.shopify_attributes }}>
+
+          {%- if block.settings.onhow_studio_link != blank -%}
+            <a href="{{ block.settings.onhow_studio_link }}" class="onhow-studio-text-overlay__link">
+          {%- endif -%}
+
+            {%- if block.settings.onhow_studio_show_icon -%}
+              <span class="onhow-studio-text-overlay__icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <g transform="translate(1 1)" stroke="currentColor" stroke-width="1.5" fill="none">
+                    <path d="M14.2 5.8l-2.1 6.3-6.3 2.1 2.1-6.3z"></path>
+                    <circle cx="10" cy="10" r="10"></circle>
+                  </g>
+                </svg>
+              </span>
+            {%- endif -%}
+
+            {%- if block.settings.onhow_studio_text != blank -%}
+              <span class="onhow-studio-text-overlay__text">{{ block.settings.onhow_studio_text }}</span>
+            {%- endif -%}
+
+          {%- if block.settings.onhow_studio_link != blank -%}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  {%- if section.blocks.size == 0 -%}
+    <div class="onhow-studio-parallax-placeholder">
+      <p>Add parallax layers in the theme editor</p>
+    </div>
+  {%- endif -%}
+</div>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .onhow-studio-section-wrapper-{{ section.settings.onhow_studio_core_logic }} * {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-section-wrapper-{{ section.settings.onhow_studio_core_logic }} p,
+  #shopify-section-{{ section.id }} .onhow-studio-section-wrapper-{{ section.settings.onhow_studio_core_logic }} h1,
+  #shopify-section-{{ section.id }} .onhow-studio-section-wrapper-{{ section.settings.onhow_studio_core_logic }} h2,
+  #shopify-section-{{ section.id }} .onhow-studio-section-wrapper-{{ section.settings.onhow_studio_core_logic }} ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-section-wrapper-{{ section.settings.onhow_studio_core_logic }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-parallax-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-parallax-layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -30%;
+    width: 100%;
+    height: 160%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-parallax-layer--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d4d4d4;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'parallax_layer' and block.settings.onhow_studio_image != blank -%}
+      #shopify-section-{{ section.id }} .onhow-studio-parallax-layer[data-block-id="{{ block.id }}"] {
+        background-image: url('{{ block.settings.onhow_studio_image | image_url: width: 1920 }}');
+      }
+
+      @media screen and (max-width: 749px) {
+        #shopify-section-{{ section.id }} .onhow-studio-parallax-layer[data-block-id="{{ block.id }}"] {
+          background-image: url('{{ block.settings.onhow_studio_image | image_url: width: 900 }}');
+        }
+      }
+    {%- endif -%}
+  {%- endfor -%}
+
+  #shopify-section-{{ section.id }} .onhow-studio-parallax-bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-parallax-overlays {
+    position: relative;
+    height: 100%;
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: var(--onhow-studio-hero-max-width, 800px);
+    text-align: var(--onhow-studio-hero-align, center);
+    pointer-events: auto;
+    z-index: 8;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-hero-text__heading {
+    font-family: var(--onhow-studio-hero-heading-family);
+    font-weight: var(--onhow-studio-hero-heading-weight);
+    font-style: var(--onhow-studio-hero-heading-style);
+    font-size: var(--onhow-studio-hero-heading-size, 48px);
+    color: var(--onhow-studio-hero-heading-color, #fff);
+    line-height: 1.15;
+    margin: 0 0 16px 0;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-hero-text__subheading {
+    font-family: var(--font-body-family), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: var(--font-body-weight);
+    font-size: var(--onhow-studio-hero-sub-size, 18px);
+    color: var(--onhow-studio-hero-sub-color, #fff);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    opacity: 0.85;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-hero-text__button {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 14px 36px;
+    font-family: var(--font-body-family), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-hero-text__button:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-hero-text__button--filled {
+    background-color: var(--onhow-studio-hero-btn-color, #fff);
+    color: var(--onhow-studio-hero-btn-text, #000);
+    border: 2px solid var(--onhow-studio-hero-btn-color, #fff);
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-hero-text__button--outline {
+    background-color: transparent;
+    color: var(--onhow-studio-hero-btn-text, #fff);
+    border: 2px solid var(--onhow-studio-hero-btn-text, #fff);
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-scroll-indicator {
+    margin-top: 32px;
+    color: #fff;
+    opacity: 0.6;
+    animation: onhow-studio-bounce 2s ease-in-out infinite;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-scroll-indicator svg {
+    display: block;
+    margin: 0 auto;
+  }
+
+  @keyframes onhow-studio-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(14px); }
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-text-overlay {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-family: var(--font-body-family), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: var(--font-body-weight);
+    line-height: 1.5;
+    pointer-events: auto;
+    z-index: 7;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-text-overlay__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-text-overlay__link:hover {
+    opacity: 0.75;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-text-overlay--top-left {
+    top: 30px;
+    left: 30px;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-text-overlay--bottom-left {
+    bottom: 30px;
+    left: 30px;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-text-overlay--bottom-right {
+    bottom: 30px;
+    right: 30px;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-text-overlay--center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-text-overlay__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-text-overlay__icon svg {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-text-overlay__text {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-fade-in {
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-fade-in.onhow-studio-appear {
+    opacity: 1;
+  }
+
+  #shopify-section-{{ section.id }} .onhow-studio-parallax-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: var(--font-body-family);
+    font-size: 16px;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .onhow-studio-text-overlay__text {
+      white-space: nowrap;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .onhow-studio-section-wrapper-{{ section.settings.onhow_studio_core_logic }}[data-mobile-enabled="false"] .onhow-studio-parallax-layer {
+      height: 100% !important;
+      top: 0 !important;
+      transform: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-hero-text__heading {
+      font-size: calc(var(--onhow-studio-hero-heading-size, 48px) * 0.55);
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-hero-text__subheading {
+      font-size: calc(var(--onhow-studio-hero-sub-size, 18px) * 0.85);
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-hero-text__button {
+      padding: 12px 28px;
+      font-size: 13px;
+      margin-top: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-scroll-indicator {
+      margin-top: 24px;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-scroll-indicator svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-text-overlay {
+      font-size: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-text-overlay--top-left,
+    #shopify-section-{{ section.id }} .onhow-studio-text-overlay--bottom-left {
+      left: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-text-overlay--top-left {
+      top: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-text-overlay--bottom-left,
+    #shopify-section-{{ section.id }} .onhow-studio-text-overlay--bottom-right {
+      bottom: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-text-overlay--bottom-right {
+      right: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-text-overlay__icon svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .onhow-studio-parallax-layer {
+      transform: none !important;
+      transition: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-fade-in {
+      opacity: 1 !important;
+      transition: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .onhow-studio-scroll-indicator {
+      animation: none !important;
+    }
+  }
+{%- endstyle -%}
+
+<script>
+  (function() {
+    var onhowStudioCredit = atob("RGVzaWduZWQgYnkgT05IT1cgU3R1ZGlvIC0gU3Vic2NyaWJlIQ==");
+    console.log('%c ' + onhowStudioCredit, 'background: #222; color: #00ff00; padding: 4px; border-radius: 4px;');
+
+    function OnhowStudioParallaxBanner(element) {
+      this.element = element;
+      this.layers = element.querySelectorAll('.onhow-studio-parallax-layer');
+      this.ticking = false;
+      this.isVisible = false;
+      this.rafId = null;
+      this.initialized = false;
+
+      this.mobileEnabled = element.dataset.mobileEnabled === 'true';
+      this.isMobile = window.matchMedia('(max-width: 749px)').matches;
+      this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (window.Shopify && window.Shopify.designMode) {
+        this.setupEditorPreview();
+        this.bindResizeOnly();
+        return;
+      }
+
+      if (this.prefersReducedMotion) return;
+      if (this.layers.length === 0) return;
+
+      this.bindResize();
+
+      if (this.isMobile && !this.mobileEnabled) return;
+
+      this.init();
+    }
+
+    OnhowStudioParallaxBanner.prototype.setupEditorPreview = function() {
+      this.layers.forEach(function(layer) {
+        var speed = (parseFloat(layer.dataset.speed) || 0) / 10;
+        var previewOffset = 200 * speed;
+        layer.style.transform = 'translate3d(0, ' + previewOffset + 'px, 0)';
+      });
+    };
+
+    OnhowStudioParallaxBanner.prototype.init = function() {
+      if (this.initialized) return;
+      this.initialized = true;
+      this.setupObserver();
+      this.bindScroll();
+    };
+
+    OnhowStudioParallaxBanner.prototype.setupObserver = function() {
+      var self = this;
+      this.observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          self.isVisible = entry.isIntersecting;
+          if (self.isVisible && !self.ticking) {
+            self.requestTick();
+          }
+        });
+      }, { rootMargin: '100px 0px', threshold: 0 });
+      this.observer.observe(this.element);
+    };
+
+    OnhowStudioParallaxBanner.prototype.bindScroll = function() {
+      var self = this;
+      this.onScrollBound = function() { self.onScroll(); };
+      window.addEventListener('scroll', this.onScrollBound, { passive: true });
+    };
+
+    OnhowStudioParallaxBanner.prototype.bindResize = function() {
+      var self = this;
+      var resizeTimer;
+      this.onResizeBound = function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          var wasMobile = self.isMobile;
+          self.isMobile = window.matchMedia('(max-width: 749px)').matches;
+          if (self.isMobile && !self.mobileEnabled && self.initialized) {
+            self.teardown();
+          } else if (!self.isMobile && wasMobile && !self.initialized && !self.prefersReducedMotion) {
+            self.init();
+          }
+        }, 200);
+      };
+      window.addEventListener('resize', this.onResizeBound, { passive: true });
+    };
+
+    OnhowStudioParallaxBanner.prototype.bindResizeOnly = function() {
+      var self = this;
+      var resizeTimer;
+      this.onResizeBound = function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          self.isMobile = window.matchMedia('(max-width: 749px)').matches;
+        }, 200);
+      };
+      window.addEventListener('resize', this.onResizeBound, { passive: true });
+    };
+
+    OnhowStudioParallaxBanner.prototype.onScroll = function() {
+      if (!this.isVisible) return;
+      if (!this.ticking) this.requestTick();
+    };
+
+    OnhowStudioParallaxBanner.prototype.requestTick = function() {
+      var self = this;
+      this.ticking = true;
+      this.rafId = requestAnimationFrame(function() { self.update(); });
+    };
+
+    OnhowStudioParallaxBanner.prototype.update = function() {
+      var rect = this.element.getBoundingClientRect();
+      var viewportHeight = window.innerHeight;
+
+      if (rect.bottom >= 0 && rect.top <= viewportHeight) {
+        var relativeScroll = -rect.top;
+        var maxOffset = rect.height * 0.3;
+
+        this.layers.forEach(function(layer) {
+          var speed = (parseFloat(layer.dataset.speed) || 0) / 10;
+          var yPos = relativeScroll * speed;
+          yPos = Math.max(-maxOffset, Math.min(maxOffset, yPos));
+          layer.style.transform = 'translate3d(0, ' + yPos + 'px, 0)';
+        });
+      }
+
+      this.ticking = false;
+    };
+
+    OnhowStudioParallaxBanner.prototype.teardown = function() {
+      if (!this.initialized) return;
+      this.initialized = false;
+
+      if (this.observer) {
+        this.observer.disconnect();
+        this.observer = null;
+      }
+
+      if (this.rafId) {
+        cancelAnimationFrame(this.rafId);
+        this.rafId = null;
+      }
+
+      if (this.onScrollBound) {
+        window.removeEventListener('scroll', this.onScrollBound);
+        this.onScrollBound = null;
+      }
+
+      this.layers.forEach(function(layer) {
+        layer.style.transform = 'translate3d(0, 0, 0)';
+      });
+    };
+
+    OnhowStudioParallaxBanner.prototype.destroy = function() {
+      this.teardown();
+      if (this.onResizeBound) {
+        window.removeEventListener('resize', this.onResizeBound);
+        this.onResizeBound = null;
+      }
+    };
+
+    function OnhowStudioFadeObserver(scope) {
+      var fadeElements = scope.querySelectorAll('.onhow-studio-fade-in');
+      if (fadeElements.length === 0) return;
+
+      this.observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('onhow-studio-appear');
+            this.observer.unobserve(entry.target);
+          }
+        }.bind(this));
+      }.bind(this), { threshold: 0, rootMargin: '0px 0px -100px 0px' });
+
+      fadeElements.forEach(function(el) { this.observer.observe(el); }.bind(this));
+    }
+
+    function initOnhowStudioParallax() {
+      var sectionId = '{{ section.id }}';
+      var sectionEl = document.getElementById('shopify-section-' + sectionId);
+      if (!sectionEl) return;
+
+      var banner = sectionEl.querySelector('.onhow-studio-section-wrapper-{{ section.settings.onhow_studio_core_logic }}');
+      if (banner) {
+        new OnhowStudioParallaxBanner(banner);
+        new OnhowStudioFadeObserver(sectionEl);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initOnhowStudioParallax);
+    } else {
+      initOnhowStudioParallax();
+    }
+
+    if (window.Shopify && window.Shopify.designMode) {
+      document.addEventListener('shopify:section:load', function(event) {
+        var banner = event.target.querySelector('.onhow-studio-section-wrapper-{{ section.settings.onhow_studio_core_logic }}');
+        if (banner) {
+          new OnhowStudioParallaxBanner(banner);
+          new OnhowStudioFadeObserver(event.target);
+        }
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Parallax Banner",
+  "tag": "section",
+  "class": "onhow-studio-parallax-banner-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "✨ Built by ONHOW Studio"
+    },
+    {
+      "type": "paragraph",
+      "content": "Get free sections & tutorials at youtube.com/@ONHOWStudio"
+    },
+    {
+      "type": "text",
+      "id": "onhow_studio_core_logic",
+      "label": "Section Architecture (Do Not Edit)",
+      "default": "built-by-onhow-studio",
+      "info": "Modifying this will break the section's CSS layout."
+    },
+    {
+      "type": "header",
+      "content": "― Core Settings ―"
+    },
+    {
+      "type": "color",
+      "id": "onhow_studio_bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "onhow_studio_text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "onhow_studio_section_height",
+      "label": "Section Height",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "default": 100,
+      "unit": "vh",
+      "info": "Height of the banner section"
+    },
+    {
+      "type": "checkbox",
+      "id": "onhow_studio_show_bottom_fade",
+      "label": "Show Bottom Fade",
+      "default": true,
+      "info": "Gradient overlay at the bottom of the banner"
+    },
+    {
+      "type": "range",
+      "id": "onhow_studio_bottom_fade_opacity",
+      "label": "Bottom Fade Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "unit": "%",
+      "info": "Controls the strength of the bottom gradient"
+    },
+    {
+      "type": "checkbox",
+      "id": "onhow_studio_enable_mobile",
+      "label": "Enable Parallax on Mobile",
+      "default": false,
+      "info": "Warning: Parallax effects may impact mobile performance and battery life"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "parallax_layer",
+      "name": "Parallax Layer",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "onhow_studio_image",
+          "label": "Layer Image",
+          "info": "Recommended: 1920×1728 for best quality"
+        },
+        {
+          "type": "range",
+          "id": "onhow_studio_speed",
+          "label": "Parallax Speed",
+          "min": -10,
+          "max": 10,
+          "step": 1,
+          "default": -5,
+          "info": "Negative = background effect, positive = foreground effect. Internally divided by 10."
+        },
+        {
+          "type": "range",
+          "id": "onhow_studio_z_index",
+          "label": "Layer Depth",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 1,
+          "info": "Higher numbers appear in front"
+        }
+      ]
+    },
+    {
+      "type": "hero_text",
+      "name": "Hero Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "onhow_studio_heading",
+          "label": "Heading",
+          "default": "Your Story Starts Here"
+        },
+        {
+          "type": "textarea",
+          "id": "onhow_studio_subheading",
+          "label": "Subheading",
+          "default": "Scroll to explore"
+        },
+        {
+          "type": "font_picker",
+          "id": "onhow_studio_heading_font",
+          "label": "Heading Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "onhow_studio_heading_size",
+          "label": "Heading Size",
+          "min": 24,
+          "max": 120,
+          "step": 2,
+          "default": 48,
+          "unit": "px",
+          "info": "Automatically scales down on mobile"
+        },
+        {
+          "type": "color",
+          "id": "onhow_studio_heading_color",
+          "label": "Heading Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "onhow_studio_subheading_size",
+          "label": "Subheading Size",
+          "min": 12,
+          "max": 36,
+          "step": 1,
+          "default": 18,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "onhow_studio_subheading_color",
+          "label": "Subheading Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "onhow_studio_text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "onhow_studio_max_width",
+          "label": "Content Max Width",
+          "min": 400,
+          "max": 1200,
+          "step": 50,
+          "default": 800,
+          "unit": "px"
+        },
+        {
+          "type": "checkbox",
+          "id": "onhow_studio_fade_in",
+          "label": "Fade In Animation",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "onhow_studio_button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "onhow_studio_button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "onhow_studio_button_style",
+          "label": "Button Style",
+          "options": [
+            { "value": "filled", "label": "Filled" },
+            { "value": "outline", "label": "Outline" }
+          ],
+          "default": "filled"
+        },
+        {
+          "type": "color",
+          "id": "onhow_studio_button_color",
+          "label": "Button Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "onhow_studio_button_text_color",
+          "label": "Button Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Scroll Indicator"
+        },
+        {
+          "type": "checkbox",
+          "id": "onhow_studio_show_scroll_indicator",
+          "label": "Show Scroll Arrow",
+          "default": true,
+          "info": "Animated down arrow below the text"
+        }
+      ]
+    },
+    {
+      "type": "text_overlay",
+      "name": "Text Overlay",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "onhow_studio_text",
+          "label": "Text",
+          "default": "Text overlay"
+        },
+        {
+          "type": "select",
+          "id": "onhow_studio_position",
+          "label": "Position",
+          "options": [
+            { "value": "top-left", "label": "Top Left" },
+            { "value": "bottom-left", "label": "Bottom Left" },
+            { "value": "bottom-right", "label": "Bottom Right" },
+            { "value": "center", "label": "Center" }
+          ],
+          "default": "bottom-left"
+        },
+        {
+          "type": "url",
+          "id": "onhow_studio_link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "onhow_studio_show_icon",
+          "label": "Show Icon",
+          "default": true,
+          "info": "Display compass icon next to text"
+        },
+        {
+          "type": "checkbox",
+          "id": "onhow_studio_fade_in",
+          "label": "Fade In Animation",
+          "default": true,
+          "info": "Animate text when scrolling into view"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Parallax Banner (By ONHOW Studio)",
+      "blocks": [
+        {
+          "type": "parallax_layer",
+          "settings": {
+            "onhow_studio_speed": -7,
+            "onhow_studio_z_index": 1
+          }
+        },
+        {
+          "type": "parallax_layer",
+          "settings": {
+            "onhow_studio_speed": -5,
+            "onhow_studio_z_index": 2
+          }
+        },
+        {
+          "type": "parallax_layer",
+          "settings": {
+            "onhow_studio_speed": -2,
+            "onhow_studio_z_index": 3
+          }
+        },
+        {
+          "type": "hero_text",
+          "settings": {
+            "onhow_studio_heading": "Your Story Starts Here",
+            "onhow_studio_subheading": "Scroll to explore",
+            "onhow_studio_heading_size": 48,
+            "onhow_studio_heading_color": "#ffffff",
+            "onhow_studio_subheading_color": "#ffffff",
+            "onhow_studio_text_alignment": "center",
+            "onhow_studio_show_scroll_indicator": true
+          }
+        },
+        {
+          "type": "text_overlay",
+          "settings": {
+            "onhow_studio_text": "37.8136° S, 144.9631° E",
+            "onhow_studio_position": "bottom-left",
+            "onhow_studio_show_icon": true,
+            "onhow_studio_fade_in": true
+          }
+        },
+        {
+          "type": "text_overlay",
+          "settings": {
+            "onhow_studio_text": "Explore the collection",
+            "onhow_studio_position": "bottom-right",
+            "onhow_studio_show_icon": false,
+            "onhow_studio_fade_in": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{%- comment -%}
+<!-- Designed by ONHOW Studio - Anas El Medlaoui -->
+{%- endcomment -%}
